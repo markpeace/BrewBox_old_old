@@ -1,0 +1,32 @@
+{
+  "name": "parseconnector",
+  "homepage": "https://github.com/markpeace/ParseConnector",
+  "authors": [
+    "markpeace <mark@learnsomestuff.com>"
+  ],
+  "description": "parseconnector",
+  "main": "/js/services/parseconnector.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "js",
+    "index.html",
+    "pu.sh",
+    "pages",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "6b3502e8ec",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6b3502e8ec372c3f2c9712f5d87f61db4eb4eb6f"
+  },
+  "_source": "git@github.com:markpeace/ParseConnector.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:markpeace/ParseConnector.git",
+  "_direct": true
+}
