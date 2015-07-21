@@ -12,6 +12,7 @@ brewbox.config(function($stateProvider, $urlRouterProvider) {
                 views: {
                         'centre-panel' :{
                                 templateUrl: "pages/brewday/home.html",
+                                controller: "Home"
                         }
                 }
         })
