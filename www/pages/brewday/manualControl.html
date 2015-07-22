@@ -1,11 +1,21 @@
 <ion-modal-view>
-        <ion-header-bar class="bar-positive">
-                <button ng-click="manualControlModal.hide()" class="button button-icon button-clear ion-ios-close-empty" menu-toggle="left">
+
+        <ion-header-bar class="bar-positive" ng-click="manualControlModal.hide()" >
+                <button class="button button-icon button-clear ion-ios-close-empty" menu-toggle="left">
                 </button>
 
-                <h1 class="title">My Modal title</h1>
+                <h1 class="title">Manual Controls</h1>
         </ion-header-bar>
-        <ion-content>
-                Hello!
+
+        <ion-content ng-controller="ManualControl">
+                <ion-list>
+                        <ion-item 
+                                  ng-repeat="command in commands" 
+                                  ng-class="command.header ? 'item-divider' : ''"
+                                  ng-click="!command.header ? execute(command) : ''">
+                                {{ command.name }}
+                        </ion-item>
+                </ion-list>    
         </ion-content>
+
 </ion-modal-view>
