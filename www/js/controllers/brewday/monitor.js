@@ -7,22 +7,34 @@ brewbox.controller('Monitor', function($scope, $ionicModal, $state) {
         }).then(function(modal) {
                 $scope.manualControlModal = modal;
         });
+        
+        $scope.hardwareReadings = {
+                hlt: {
+                        parameters: {
+                                maximumVolume: 80,
+                        },
+                        readings: {
+                                vol:30.232,
+                                targetVolume:50,
+                                temperature: 25.99,
+                                targetTemperature: 82.333,
+                                elementActive:true,
+                                pumpActive:true,
+                                inputValveOpen:true,
+                                outputValveOpen:true
+                        }
+                }
+        }
 
-       
-        $scope.volume=30;
-        $scope.targetVolume=70;
-        $scope.maximumVolume=80;
-        $scope.temperature=24.23;
-        $scope.elementActive=true;
-
+      
         $scope.calculateFullness = function() {
-                var v= Math.round(-160+(($scope.volume / $scope.maximumVolume)*320),0)
+                var v= Math.round(-160+(($scope.hardwareReadings.hlt.readings.vol / $scope.hardwareReadings.hlt.parameters.maximumVolume)*320),0)
                 if(isNaN(v)) {v=-160}
                 return v
         }
         
         $scope.calculateTargetFullness = function() {
-                var v= Math.round(-160+(($scope.targetVolume / $scope.maximumVolume)*320),0)
+                var v= Math.round(-160+(($scope.hardwareReadings.hlt.readings.targetVolume / $scope.hardwareReadings.hlt.parameters.maximumVolume)*320),0)
                 if(isNaN(v)) {v=-160}
                 return v
         }
