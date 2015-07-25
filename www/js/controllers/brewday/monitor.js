@@ -1,4 +1,4 @@
-brewbox.controller('Monitor', function($scope, $ionicModal, $state) { 
+brewbox.controller('Monitor', function($scope, HardwareInterface, $ionicModal, $state) { 
 
 
         $ionicModal.fromTemplateUrl('pages/brewday/manualControl.html', {
@@ -8,6 +8,8 @@ brewbox.controller('Monitor', function($scope, $ionicModal, $state) {
                 $scope.manualControlModal = modal;
         });
         
+        $scope.Math=Math
+               
         $scope.hardwareReadings = {
                 hlt: {
                         parameters: {
@@ -25,6 +27,10 @@ brewbox.controller('Monitor', function($scope, $ionicModal, $state) {
                         }
                 }
         }
+        
+        $scope.hardwareReadings = HardwareInterface.hardwareReadings()
+        
+        console.log(HardwareInterface)
 
       
         $scope.calculateFullness = function() {
@@ -34,7 +40,7 @@ brewbox.controller('Monitor', function($scope, $ionicModal, $state) {
         }
         
         $scope.calculateTargetFullness = function() {
-                var v= Math.round(-160+(($scope.hardwareReadings.hlt.readings.targetVolume / $scope.hardwareReadings.hlt.parameters.maximumVolume)*320),0)
+                var v= Math.round(-160+(($scope.hardwareReadings.hlt.readings.targetVol/ $scope.hardwareReadings.hlt.parameters.maximumVolume)*320),0)
                 if(isNaN(v)) {v=-160}
                 return v
         }

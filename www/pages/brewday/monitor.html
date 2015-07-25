@@ -1,20 +1,22 @@
 <ion-view view-title="Brew Day">
-
         <ion-content scroll="false">
-
-
                 <div style="display:block; text-align:center; padding-top:50px;">
-
                         <svg style="background-color:white" width="320px" height="320px" version="1.1" xmlns="http://www.w3.org/2000/svg"   >
-        
                                 
-                                <path ng-d="{{ describeArc(160, 160, 100, calculateFullness(), calculateTargetFullness() ) }}" stroke="grey" stroke-width="20" stroke-dasharray="12,6" fill="none" />
+                                <text x="10" y="15" fill="red" ng-show="hardwareReadings.hlt.parameters.emulationMode==1">
+                                        EMU
+                                </text>
+
+                                <path ng-d="{{ describeArc(160, 160, 100, calculateTargetFullness(), 160 ) }}" stroke="silver" stroke-width="20" stroke-dasharray="12,6" fill="none" />                                                                                                
+                                
+                                <path ng-show="hardwareReadings.hlt.readings.targetVol>hardwareReadings.hlt.readings.vol"                                      
+                                      ng-d="{{ describeArc(160, 160, 100, calculateFullness(), calculateTargetFullness() ) }}" stroke="grey" stroke-width="20" stroke-dasharray="12,6" fill="none" />
 
                                 <text 
-                                      ng-hide="hardwareReadings.hlt.readings.targetVolume-hardwareReadings.hlt.readings.vol<3"
+                                      ng-hide="Math.abs(hardwareReadings.hlt.readings.targetVol-hardwareReadings.hlt.readings.vol)<3"
                                       ng-x="{{polarToCartesian(160, 160, 125, calculateTargetFullness()).x}}" 
                                       ng-y="{{polarToCartesian(160, 160, 125, calculateTargetFullness()).y}}" 
-                                      text-anchor="middle" style="font-size:1em;">{{hardwareReadings.hlt.readings.targetVolume | number:0}}l</text>
+                                      text-anchor="middle" style="font-size:1em;">{{hardwareReadings.hlt.readings.targetVol | number:0}}l</text>
 
                                 <path ng-d="{{ describeArc(160, 160, 100, -160, calculateFullness() ) }}" stroke="blue" stroke-width="20" stroke-dasharray="12,6" fill="none" />
 
@@ -23,13 +25,12 @@
                                       ng-y="{{polarToCartesian(160, 160, 125, calculateFullness()).y}}" 
                                       text-anchor="middle" style="font-size:1em;">{{hardwareReadings.hlt.readings.vol | number:0}}l</text>
 
-                                <path ng-d="{{ describeArc(160, 160, 100, calculateTargetFullness(), 160 ) }}" stroke="silver" stroke-width="20" stroke-dasharray="12,6" fill="none" />                                                                
 
                                 <text x="160" y="130" text-anchor="middle" style="font-size:1.2em;">HLT</text>
 
                                 <text x="160" y="170" text-anchor="middle" style="font-size:1.2em;">
-                                        {{ hardwareReadings.hlt.readings.temperature | number:0}}
-                                        / {{hardwareReadings.hlt.readings.targetTemperature | number:0}}
+                                        {{ hardwareReadings.hlt.readings.temp | number:0}}
+                                        / {{hardwareReadings.hlt.readings.targetTemp | number:0}}
                                         &deg;C
                                 </text>
 
@@ -43,6 +44,10 @@
                 {{ hardwareReadings.hlt.readings.pumpActive }}
                 {{ hardwareReadings.hlt.readings.inputValveOpen }}
                 {{ hardwareReadings.hlt.readings.outputValveOpen }}
+
+                <br/>
+                
+                {{ hardwareReadings.hlt }}
                 
         </ion-content>
 
