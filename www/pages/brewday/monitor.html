@@ -2,13 +2,13 @@
         <ion-content scroll="false">
                 <div style="display:block; text-align:center; padding-top:50px;">
                         <svg style="background-color:white" width="320px" height="320px" version="1.1" xmlns="http://www.w3.org/2000/svg"   >
-                                
+
                                 <text x="10" y="15" fill="red" ng-show="hardwareReadings.hlt.parameters.emulationMode==1">
                                         EMU
                                 </text>
 
                                 <path ng-d="{{ describeArc(160, 160, 100, calculateTargetFullness(), 160 ) }}" stroke="silver" stroke-width="20" stroke-dasharray="12,6" fill="none" />                                                                                                
-                                
+
                                 <path ng-show="hardwareReadings.hlt.readings.targetVol>hardwareReadings.hlt.readings.vol"                                      
                                       ng-d="{{ describeArc(160, 160, 100, calculateFullness(), calculateTargetFullness() ) }}" stroke="grey" stroke-width="20" stroke-dasharray="12,6" fill="none" />
 
@@ -28,7 +28,13 @@
 
                                 <text x="160" y="130" text-anchor="middle" style="font-size:1.2em;">HLT</text>
 
-                                <text x="160" y="170" text-anchor="middle" style="font-size:1.2em;">
+                                <text x="160" y="170" text-anchor="middle" style="font-size:1.2em;" ng-show="Math.abs(Math.round(hardwareReadings.hlt.readings.targetTemp-hardwareReadings.hlt.readings.temp))<1">
+                                        {{ hardwareReadings.hlt.readings.temp | number:0}}
+                                        &deg;C
+                                </text>
+
+
+                                <text x="160" y="170" text-anchor="middle" style="font-size:1.2em;" ng-hide="Math.abs(Math.round(hardwareReadings.hlt.readings.targetTemp-hardwareReadings.hlt.readings.temp))<1">
                                         {{ hardwareReadings.hlt.readings.temp | number:0}}
                                         / {{hardwareReadings.hlt.readings.targetTemp | number:0}}
                                         &deg;C
@@ -46,9 +52,9 @@
                 {{ hardwareReadings.hlt.readings.outputValveOpen }}
 
                 <br/>
-                
+
                 {{ hardwareReadings.hlt }}
-                
+
         </ion-content>
 
         <div on-drag-up="manualControlModal.show()" ng-click="manualControlModal.show()" class="bar bar-footer bar-positive" style="margin-left:40%; width:20%; height:50px; border-radius: 10px 10px 0px 0px!important;">

@@ -25,7 +25,7 @@ brewbox.factory('HardwareInterface', function($http, $interval) {
                     assignResponseTo: "nothing"
             },{
                     port: 151,
-                    command: "HLT SET TEMP 60",
+                    command: "HLT SET TEMP 10",
                     assignResponseTo: "nothing"
             },{
                     port: 151,
