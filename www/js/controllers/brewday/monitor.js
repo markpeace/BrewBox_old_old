@@ -7,9 +7,9 @@ brewbox.controller('Monitor', function($scope, HardwareInterface, $ionicModal, $
         }).then(function(modal) {
                 $scope.manualControlModal = modal;
         });
-        
+
         $scope.Math=Math
-               
+
         $scope.hardwareReadings = {
                 hlt: {
                         parameters: {
@@ -27,18 +27,18 @@ brewbox.controller('Monitor', function($scope, HardwareInterface, $ionicModal, $
                         }
                 }
         }
-        
+
         $scope.hardwareReadings = HardwareInterface.hardwareReadings()
-        
+
         console.log(HardwareInterface)
 
-      
+
         $scope.calculateFullness = function() {
                 var v= Math.round(-160+(($scope.hardwareReadings.hlt.readings.vol / $scope.hardwareReadings.hlt.parameters.maximumVolume)*320),0)
                 if(isNaN(v)) {v=-160}
                 return v
         }
-        
+
         $scope.calculateTargetFullness = function() {
                 var v= Math.round(-160+(($scope.hardwareReadings.hlt.readings.targetVol/ $scope.hardwareReadings.hlt.parameters.maximumVolume)*320),0)
                 if(isNaN(v)) {v=-160}
@@ -69,6 +69,24 @@ brewbox.controller('Monitor', function($scope, HardwareInterface, $ionicModal, $
                 return d;       
         }        
 
+
+        $scope.newValue = 0
+        var priorX =0
+        var priorY=0
+        $scope.scrollVolume = function (e) {
+                e=e.gesture.touches[0]
+
+                if( (priorX - 160)*(e.offsetY - 160) - (priorY - 160)*(e.offsetX - 160) >0 ) {
+                        $scope.newValue++
+                } else {
+                        $scope.newValue--
+                }
+
+                priorX=e.offsetX
+                priorY=e.offsetY
+
+
+        }
 
 
 

@@ -1,11 +1,13 @@
-<ion-view view-title="Brew Day">
+<ion-view view-title="Brew Day  {{newValue}} ">
         <ion-content scroll="false">
                 <div style="display:block; text-align:center; padding-top:50px;">
-                        <svg style="background-color:white" width="320px" height="320px" version="1.1" xmlns="http://www.w3.org/2000/svg"   >
+                        <svg style="background-color:white" width="320px" height="320px" version="1.1" xmlns="http://www.w3.org/2000/svg" 
+                             on-drag="scrollVolume($event)" >
 
                                 <text x="10" y="15" fill="red" ng-show="hardwareReadings.hlt.parameters.emulationMode==1">
                                         EMU
                                 </text>
+                                 
 
                                 <path ng-d="{{ describeArc(160, 160, 100, calculateTargetFullness(), 160 ) }}" stroke="silver" stroke-width="20" stroke-dasharray="12,6" fill="none" />                                                                                                
 

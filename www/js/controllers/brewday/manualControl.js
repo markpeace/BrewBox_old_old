@@ -1,4 +1,4 @@
-brewbox.controller('ManualControl', function($scope, $state) { 
+brewbox.controller('ManualControl', function($scope, HardwareInterface, $state) { 
 
         $scope.commands = [
                 { name: "HLT Volume", header:true },
